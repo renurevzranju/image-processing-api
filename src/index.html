@@ -1,88 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <title>Image Processing using Sharp Node.js Module</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-  <title>Image Processing using Sharp Node.js Module</title>
-</head>
-
-<body>
-  <nav class="navbar bg-dark mb-4" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand text-light" href="#">Image Processing API</a>
-    </div>
-  </nav>
-
-  <form id="imageProcessingForm" class="container-fluid">
-    <div class="row mb-3">
-      <div class="col">
-        <label for="filename" class="form-label">Select File<span class="text-danger">*</span></label>
-        <select name="filename" class="form-control" id="filename" required>
-          <option value="">Please Select</option>
-          <option value="encenadaport">encenadaport</option>
-          <option value="fjord">fjord</option>
-          <option value="icelandwaterfall">icelandwaterfall</option>
-          <option value="palmtunnel">palmtunnel</option>
-          <option value="santamonica">santamonica</option>
-        </select>
+  <body>
+    <nav class="navbar bg-dark mb-4" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light" href="#">Image Processing API</a>
       </div>
-      <div class="col">
-        <label for="height" class="visually-hidden">Height<span class="text-danger">*</span></label>
-        <input type="number" name="height" class="form-control" id="height" min="1" required />
+    </nav>
+
+    <form id="imageProcessingForm" class="container-fluid">
+      <div class="row mb-3">
+        <div class="col">
+          <label for="filename" class="form-label"
+            >Select File<span class="text-danger">*</span></label
+          >
+          <select name="filename" class="form-control" id="filename" required>
+            <option value="">Please Select</option>
+            <option value="encenadaport">encenadaport</option>
+            <option value="fjord">fjord</option>
+            <option value="icelandwaterfall">icelandwaterfall</option>
+            <option value="palmtunnel">palmtunnel</option>
+            <option value="santamonica">santamonica</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="width" class="visually-hidden">Width</label>
+          <input
+            type="number"
+            name="width"
+            class="form-control"
+            id="width"
+            min="1"
+          />
+        </div>
+        <div class="col">
+          <label for="height" class="visually-hidden">Height</label>
+          <input
+            type="number"
+            name="height"
+            class="form-control"
+            id="height"
+            min="1"
+          />
+        </div>
       </div>
-      <div class="col">
-        <label for="width" class="visually-hidden">Width<span class="text-danger">*</span></label>
-        <input type="number" name="width" class="form-control" id="width" min="1" required />
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        <button type="reset" class="btn btn-secondary mb-3">Clear</button>
       </div>
-    </div>
-    <div class="mb-3">
-      <button type="submit" class="btn btn-primary mb-3">Submit</button>
-      <button type="reset" class="btn btn-secondary mb-3">Clear</button>
-    </div>
 
-    <div class="my-3">
-      <em class="font-weight-bold">Note: </em>Make sure to provide a valid filename (image that exists in the
-      assets/full folder) as well as valid height and width for which the
-      image will be processed.
-      <br>
-      <p class="font-italic">
-        Example:
-        <code>
-              <a href="/api/images?filename=palmtunnel&height=200&width=200">
-                /api/images?filename=palmtunnel&height=200&width=200
-              </a\>
-            </code>
-      </p>
+      <div class="my-3">
+        <em class="font-weight-bold">Note: </em>Provide a valid filename (image
+        that exists in the assets/full folder). As well as providing a correct
+        height and width for the image to be processed, you can also choose to
+        ignore both.
+        <br />
+        <p class="font-italic">
+          Example:
+          <code>
+            <a href="/api/images?filename=palmtunnel&width=200&height=200">
+              /api/images?filename=palmtunnel&width=200&height=200
+            </a>
+          </code>
+        </p>
+      </div>
+    </form>
 
-    </div>
-  </form>
-
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
-  <script>
-    $("#imageProcessingForm").on("submit", function (event) {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-      const formProps = Object.fromEntries(formData);
-      const queryString = new URLSearchParams(
-        JSON.parse(JSON.stringify(formProps))
-      ).toString();
-      $("#imageProcessingForm").trigger("reset");
-      location.href = `/api/images?${queryString}`;
-    });
-  </script>
-</body>
-
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $("#imageProcessingForm").on("submit", function (event) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const formProps = Object.fromEntries(formData);
+        const queryString = new URLSearchParams(
+          JSON.parse(JSON.stringify(formProps))
+        ).toString();
+        $("#imageProcessingForm").trigger("reset");
+        location.href = `/api/images?${queryString}`;
+      });
+    </script>
+  </body>
 </html>

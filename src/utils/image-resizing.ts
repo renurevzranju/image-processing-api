@@ -16,7 +16,7 @@ const resizeImage = async (
   try {
     await sharp(params.imagePath)
       .resize(params.width, params.height)
-      .toFormat("jpeg")
+      .toFormat("jpg")
       .toFile(params.targetPath);
     console.log(
       `Successfully processed the image and saved to ${params.targetPath}`

@@ -15,12 +15,17 @@ images.get(
     console.log("Started Processing the Images");
     const validation = await validateQuery(request.query);
     if (validation) {
+      console.log("Query params validation failed");
       response.send(validation);
       return;
     }
 
-    const desiredHeight = parseInt(request.query.height as string),
-      desiredWidth = parseInt(request.query.width as string);
+    const desiredHeight = request.query.height
+        ? parseInt(request.query.height as string)
+        : null,
+      desiredWidth = request.query.width
+        ? parseInt(request.query.width as string)
+        : null;
 
     const options: ImageResizeOptions = {
       imagePath: getImagePath(request.query.filename as string, false),
@@ -47,7 +52,7 @@ images.get(
         return;
       }
     } else {
-      console.log(`Image ${options.targetPath} already exists`);
+      console.log(`File already exists in this path ${options.targetPath} `);
     }
     response.sendFile(options.targetPath);
   }

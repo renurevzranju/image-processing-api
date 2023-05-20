@@ -18,12 +18,8 @@ export const validateQuery = async (
 ): Promise<null | string> => {
   if (!query.filename) {
     return "File name is required";
-  } else if (
-    query.height === undefined ||
-    query.height === null ||
-    query.width === undefined ||
-    query.width === null
-  ) {
+  }
+  if ((query.width && !query.height) || (!query.width && query.height)) {
     return "Provide height and width as parameters to resize image";
   }
 
