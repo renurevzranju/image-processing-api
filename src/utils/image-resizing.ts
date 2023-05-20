@@ -16,6 +16,7 @@ const resizeImage = async (params: ImageResizeOptions): Promise<null|string> => 
       .resize(params.width, params.height)
       .toFormat("jpeg")
       .toFile(params.targetPath);
+      console.log(`Successfully processed the image and saved to ${params.targetPath}`);
       return null;
   } catch {
     return "Image could not be processed. Try again.";
