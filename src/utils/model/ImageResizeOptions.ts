@@ -1,7 +1,7 @@
 export interface ImageResizeOptions{
     imagePath: string;
-    height?: number|null;
-    width?: number|null;
+    height: number;
+    width: number;
     targetPath: string;
   }
   

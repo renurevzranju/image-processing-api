@@ -1,5 +1,5 @@
 import express from "express";
-import { validateQuery, getImagePath, isFileExist } from "../../utils/validate";
+import { validateQuery, getImagePath, isFileExist } from "../../utils/validator";
 import resizeImage from "../../utils/image-resizing";
 import { ImageResizeOptions } from "../../utils/model/ImageResizeOptions";
 
@@ -15,12 +15,8 @@ images.get(
       return;
     }
 
-    const desiredHeight = request.query.height
-        ? parseInt(request.query.height as string)
-        : null,
-      desiredWidth = request.query.width
-        ? parseInt(request.query.width as string)
-        : null;
+    const desiredHeight = parseInt(request.query.height as string),
+      desiredWidth = parseInt(request.query.width as string);
 
     var options: ImageResizeOptions = {
       imagePath: getImagePath(request.query.filename as string, false),
