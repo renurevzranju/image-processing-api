@@ -6,8 +6,8 @@ const routes = express.Router();
 
 routes.use("/api/images", images);
 
-routes.get('/', (request: express.Request, response: express.Response) => {
-    response.sendFile(path.resolve("./src/views/index.html"));
+routes.get("/", (request: express.Request, response: express.Response) => {
+  response.sendFile(path.resolve("./src/index.html"));
 });
 
 export default routes;

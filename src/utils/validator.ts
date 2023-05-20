@@ -27,7 +27,7 @@ export const validateQuery = async (
     return "Provide height and width as parameters to resize image";
   }
 
-  var fileExist = await isFileExist(getImagePath(query.filename, false));
+  const fileExist = await isFileExist(getImagePath(query.filename, false));
   if (fileExist) {
     return null;
   } else {
@@ -60,14 +60,14 @@ export const isFileExist = async (path: string): Promise<boolean> => {
 export const getImagePath = (
   filename: string,
   isThumbnail: boolean,
-  width?: number|null,
-  height?: number|null
-) => {
-    if(isThumbnail){
-        if(height && width){
-            filename = `${filename}_${width}x${height}`;
-        }
-        return path.resolve(imagesThumbPath, `${filename}.jpg`)
+  width?: number | null,
+  height?: number | null
+): string => {
+  if (isThumbnail) {
+    if (height && width) {
+      filename = `${filename}_${width}x${height}`;
     }
-    return path.resolve(imagesFullPath, `${filename}.jpg`);
+    return path.resolve(imagesThumbPath, `${filename}.jpg`);
+  }
+  return path.resolve(imagesFullPath, `${filename}.jpg`);
 };

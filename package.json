@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
-    "eslint": "eslint -c .eslintrc \"src/**/*.ts\"",
+    "lint": "eslint -c .eslintrc \"src/**/*.ts\"",
     "start": "nodemon src/index.ts",
     "build": "npx tsc"
   },
@@ -14,14 +14,17 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.1.4",
+    "@types/sharp": "^0.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "eslint": "^8.40.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "express": "^4.18.2",
     "prettier": "^2.8.8",
     "sharp": "^0.32.1"

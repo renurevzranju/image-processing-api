@@ -10,14 +10,18 @@ import { ImageResizeOptions } from "./model/ImageResizeOptions";
  * @param {string} [params.targetPath] Target path of the file.
  * @return {null|string} null, if image is processed, else error message.
  */
-const resizeImage = async (params: ImageResizeOptions): Promise<null|string> => {
+const resizeImage = async (
+  params: ImageResizeOptions
+): Promise<null | string> => {
   try {
     await sharp(params.imagePath)
       .resize(params.width, params.height)
       .toFormat("jpeg")
       .toFile(params.targetPath);
-      console.log(`Successfully processed the image and saved to ${params.targetPath}`);
-      return null;
+    console.log(
+      `Successfully processed the image and saved to ${params.targetPath}`
+    );
+    return null;
   } catch {
     return "Image could not be processed. Try again.";
   }
