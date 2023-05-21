@@ -69,26 +69,39 @@ Endpoint to resize an image
 
 #### Query Parameters to resize the image
 -  _filename_ : Image filename that are available in assets/full folder
-  - encenadaport
-  - fjord
-  - icelandwaterfall
-  - palmtunnel
-  - santamonica
+    * encenadaport
+    * fjord
+    * icelandwaterfall
+    * palmtunnel
+    * santamonica
 - _width_ : number that is greater than 1
 - _height_ : number that is greater than 1
 you can also choose to ignore the width and height
 
-#### Examples:
+### Examples:
+
+#### _Valid file name as parameter (without height and width)_
 ```bash
   http://localhost:5000/api/images?filename=palmtunnel
 ```
 Will display the original palmtunnel image from full folder
 
+#### _Valid file name, height and width parameters_
+```bash
+  http://localhost:5000/api/images?filename=palmtunnel&width=200&height=200
+```
+Will display the resized image and also the file will be stored in assets/thumb folder
+
+#### _Missing height and width parameters and valid file name_
 ```bash
   http://localhost:5000/api/images?filename=palmtunnel&width=100
 
   http://localhost:5000/api/images?filename=palmtunnel&height=100
 ```
-Will display a message as _Provide height and width as parameters to resize image_
+Will display a error message as _Provide height and width as parameters to resize image_
 
-
+#### _Invalid file name and valid height and width parameters_
+```bash
+  http://localhost:5000/api/images?filename=GreatWallofChina&width=100&height=100
+```
+Will display a error message as _Provided filename does not exist_
